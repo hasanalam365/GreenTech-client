@@ -27,7 +27,7 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
     return (
         <div className="flex flex-row-reverse  justify-between ">
             <Helmet>
-                <title>Dashboard | HMS </title>
+                <title>Dashboard | Green Tech </title>
             </Helmet>
             <div className="md:hidden lg:hidden">
                 <button onClick={() => { setIsOpenNav(!isOpenNav) }} className="mt-5 mr-5">

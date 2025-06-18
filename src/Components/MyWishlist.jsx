@@ -52,7 +52,7 @@ const MyWishlist = () => {
     return (
         <div className="md:w-full mx-auto mt-8">
             <Helmet>
-                <title>Wishlist | Dashboard | HMS </title>
+                <title>Wishlist | Dashboard | Green Tech </title>
             </Helmet>
             <div>
                 <h4 className="text-xl font-medium"> Wishlist:</h4>

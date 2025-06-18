@@ -20,7 +20,7 @@ const OrderStatus = () => {
     return (
         <div>
             <Helmet>
-                <title>Status | Dashboard | HMS </title>
+                <title>Status | Dashboard | Green Tech </title>
             </Helmet>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

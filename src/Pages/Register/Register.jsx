@@ -81,7 +81,7 @@ const Register = () => {
     return (
         <div className="pt-16 mb-8">
             <Helmet>
-                <title>Register | HMS </title>
+                <title>Register | Green Tech </title>
             </Helmet>
             <section className="  dark:text-gray-900  md:w-3/4 lg:1/2 mx-auto bg-gray-200">
                 <form onSubmit={handleAddress} className="container flex flex-col mx-auto space-y-12">

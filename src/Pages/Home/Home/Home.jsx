@@ -54,7 +54,7 @@ const Home = () => {
     return (
         <div>
             <Helmet>
-                <title>Home | HMS </title>
+                <title>Home | Green Tech </title>
             </Helmet>
             <Banner></Banner>
             <div className={`tooltip tooltip-left fixed bottom-10 right-5 z-50 ${isTooltipVisible ? 'tooltip-open' : ''}`} data-tip="May I help you,Sir/Madam?">

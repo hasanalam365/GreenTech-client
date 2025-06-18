@@ -188,7 +188,7 @@ const ViewOrderDetails = () => {
     return (
         <div>
             <Helmet>
-                <title>View Order Details | Admin | HMS </title>
+                <title>View Order Details | Admin | Green Tech </title>
             </Helmet>
             <section className=" mt-2 md:mt-10">
                 <div action="" className="container flex flex-col md:flex-row gap-7 mx-auto ">

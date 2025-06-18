@@ -54,7 +54,7 @@ const UpdateProduct = () => {
     return (
         <div className="flex items-center justify-center mt-10 ">
             <Helmet>
-                <title>Update Product | Admin | HMS </title>
+                <title>Update Product | Admin | Green Tech </title>
             </Helmet>
             {/* stock updated */}
             <div className="flex flex-col gap-5 ">

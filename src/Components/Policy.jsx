@@ -1,8 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Policy = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 pt-16 mb-16 text-gray-800">
+              <Helmet>
+                <title>Privacy Policy | Green Tech </title>
+            </Helmet>
+
       <h1 className="text-4xl font-extrabold mb-8 text-center text-blue-900">Privacy Policy</h1>
 
       {/* Intro Section */}

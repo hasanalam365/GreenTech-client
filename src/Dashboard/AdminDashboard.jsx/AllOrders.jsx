@@ -56,7 +56,7 @@ const AllOrders = () => {
     return (
         <div className="flex flex-col mt-4 px-4 md:p-8">
             <Helmet>
-                <title>All Orders | Admin | HMS </title>
+                <title>All Orders | Admin | Green Tech </title>
             </Helmet>
             <div className="flex items-center justify-between mb-2">
 

@@ -86,7 +86,7 @@ const CheckoutPage = () => {
     return (
         <div className=" flex flex-col md:flex-row lg:flex-row gap-5 mt-3">
             <Helmet>
-                <title>Checkout | HMS </title>
+                <title>Checkout | Green Tech</title>
             </Helmet>
             <div className="w-full md:w-[60%] lg:w-[60%]  ">
                 <div className="bg-orange-600 text-center rounded-xl ">
@@ -158,7 +158,7 @@ const CheckoutPage = () => {
                                 <span className="font-medium">Cash On Delivery</span>
                             </label>
                         </div>
-                        <div className="form-control">
+                        {/* <div className="form-control">
                             <label className="flex items-center gap-5 mb-2">
 
                                 <input
@@ -170,8 +170,8 @@ const CheckoutPage = () => {
 
                                 <img className="h-[60px] w-[35%] md:w-3/4 lg:w-3/4" src="https://i.ibb.co/Wnqn0QP/bkash-payment-logo-removebg-preview.png" alt="bkash logo" />
                             </label>
-                        </div>
-                        <div className="form-control">
+                        </div> */}
+                        {/* <div className="form-control">
                             <label className="flex items-center gap-5 mb-2">
                                 <input
                                     type="checkbox"
@@ -181,8 +181,8 @@ const CheckoutPage = () => {
                                 />
                                 <img className="h-[60px] w-[35%]" src="https://i.ibb.co/kyMbzf0/Nagad-Logo-2024-removebg-preview.png" alt="nagad logo" />
                             </label>
-                        </div>
-                        <div className="form-control">
+                        </div> */}
+                        {/* <div className="form-control">
                             <label className="flex items-center gap-5 mb-2">
                                 <input
                                     type="checkbox"
@@ -193,7 +193,7 @@ const CheckoutPage = () => {
 
                                 <img className="h-[60px] w-[35%]" src="https://i.ibb.co/MgNmKRQ/stripe-removebg-preview.png" alt="stripe logo" />
                             </label>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className=" border-2 border-white mt-1 mb-1 border-dashed p-2">

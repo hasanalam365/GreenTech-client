@@ -22,7 +22,7 @@ const Mycarts = () => {
     return (
         <div className="md:mt-8 lg:mt-0">
             <Helmet>
-                <title>My Cart | HMS </title>
+                <title>My Cart | Green Tech </title>
             </Helmet>
             <div className="w-full">
                 <div className="bg-orange-600 text-center rounded-xl ">

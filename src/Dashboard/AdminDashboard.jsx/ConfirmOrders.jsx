@@ -52,7 +52,7 @@ const ConfirmOrders = () => {
     return (
         <div className="flex flex-col mt-4 px-4 md:p-8">
             <Helmet>
-                <title>Confirm Orders | Admin | HMS </title>
+                <title>Confirm Orders | Admin | Green Tech </title>
             </Helmet>
             <div className="flex items-center justify-between mb-2">
 

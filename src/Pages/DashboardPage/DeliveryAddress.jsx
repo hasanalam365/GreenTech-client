@@ -66,7 +66,7 @@ const DeliveryAddress = () => {
     return (
         <div>
             <Helmet>
-                <title>Delivery Address | HMS </title>
+                <title>Delivery Address | Green Tech </title>
             </Helmet>
             <section className="  dark:text-gray-900 w-[95%] md:mt-5 lg:mt-0 mx-auto bg-gray-200">
                 <form onSubmit={handleAddress} className="container flex flex-col mx-auto space-y-12">

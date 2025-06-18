@@ -23,7 +23,7 @@ const Profile = () => {
     return (
         <div className="bg-base-200 shadow-xl p-2 md:p-4 mt-16 md:mt-5 lg:mt-5 w-[98%]  mx-auto">
             <Helmet>
-                <title>Profile | Dashboard </title>
+                <title>Profile | Dashboard | Green Tech </title>
             </Helmet>
             <div className="flex items-center justify-between">
                 <h3 className=" text-xl ">Personal Information</h3>

@@ -13,7 +13,7 @@ const DetailsConfirmOrder = () => {
     return (
         <div>
             <Helmet>
-                <title>Confirm Order | Admin | HMS </title>
+                <title>Confirm Order | Admin | Green Tech </title>
             </Helmet>
             <div>
                 <div className="text-center mb-5">

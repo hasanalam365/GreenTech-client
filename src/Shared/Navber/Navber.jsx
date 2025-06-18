@@ -43,9 +43,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
             <li>Blogs</li>
         </NavLink>
 
-        <NavLink onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
-            <li>Service Center</li>
-        </NavLink>
+        
         <NavLink onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
             <li>Contact</li>
         </NavLink>
@@ -103,7 +101,9 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
                     </ul>}
                 </div>
                 <Link to='/' className="hover:scale-105">
-                    <img src="https://i.ibb.co/1LSTmBy/logo.png" className="w-[60px] h-[50px]" alt="" />
+                   
+                    <img src="https://i.ibb.co/23jC9QSt/Green-Logo-2.png" className="w-[100px] md:w-[120px] lg:w-[170px] h-[50px]" alt="" />
+                    {/* <h3 className="text-lg font-semibold">Green Tech</h3> */}
 
                 </Link>
 

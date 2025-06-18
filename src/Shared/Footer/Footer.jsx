@@ -43,8 +43,16 @@ const Footer = () => {
                             <Link to='/brands'>Brands</Link>
                         </a>
                         
-                        <a className="link link-hover">Blogs</a>
-                        <a className="link link-hover">Categories</a>
+                        <a className="link link-hover">
+                        <Link to="/blogs">
+                            Blogs
+                            </Link>
+                        </a>
+                        <a className="link link-hover">
+                            <Link to="/categories">
+                            Categories
+                            </Link>
+                            </a>
                         <a className="link link-hover">Service Center</a>
                     
                         <a className="link link-hover">

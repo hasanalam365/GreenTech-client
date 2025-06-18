@@ -82,7 +82,7 @@ const Login = () => {
     return (
         <div className=" bg-base-300 min-h-screen p-8 pt-20">
             <Helmet>
-                <title>Log in | HMS </title>
+                <title>Log in | Green Tech </title>
             </Helmet>
             <div className="w-[95%] md:w-1/2 lg:w-[40%] mx-auto ">
 

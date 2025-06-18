@@ -186,7 +186,7 @@ const ProductDetail = () => {
     return (
         <div>
             <Helmet>
-                <title>{productData.title} | {productData.category} | HMS </title>
+                <title>{productData.title} | {productData.category} | Green Tech </title>
             </Helmet>
             <div className=" bg-base-200 p-8 pt-20">
                 <div className="flex flex-col md:flex-col lg:flex-row gap-5 md:gap-5 ">

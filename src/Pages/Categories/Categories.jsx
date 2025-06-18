@@ -27,7 +27,7 @@ const Categories = () => {
     return (
         <div className="pt-5 flex flex-col-reverse md:flex-row lg:flex-row ">
             <Helmet>
-                <title>Category | HMS </title>
+                <title>Category | Green Tech </title>
             </Helmet>
             <div className="w-full md:w-[77%] lg:w-[77%]">
                 {/* Categories Left Side */}

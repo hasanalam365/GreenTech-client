@@ -78,7 +78,7 @@ const AddProduct = () => {
     return (
         <div>
             <Helmet>
-                <title>Add Product | Admin | HMS </title>
+                <title>Add Product | Admin | Green Tech </title>
             </Helmet>
             <form onSubmit={handleAddProduct}>
                 <div className="text-center mb-5">
