@@ -11,17 +11,26 @@ const Footer = () => {
                 <nav>
                     {/* <h6 className="footer-title">Social</h6> */}
                     <Link to="/" className="">
-                        <img className="w-[100px] h-[50px]" src="/logo.png" alt="" />
+                        {/* <img className="w-[100px] h-[50px]" src="/logo.png" alt="" /> */}
+                        <h3 className="text-2xl font-bold">Green Tech</h3>
                     </Link>
                     <div className="grid grid-flow-col gap-4">
                         <div className="space-y-3">
-                            <h4>HRM is the largest Eco Product importer
-                                and Distributor in Bangladesh and now holds
+                            <h4>Green Tech is the largest Eco Product importer
+                                and Distributor in USA and now holds
                                 the leading position in the ecosystem industry.</h4>
                             <div className="flex gap-5">
                                 <FaFacebook className="text-3xl"></FaFacebook>
                                 <FaInstagram className="text-3xl"></FaInstagram>
-                                <FaWhatsappSquare className="text-3xl"></FaWhatsappSquare>
+                                <a
+                                    href="https://wa.me/+14036941173"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+
+                                    className="hover:text-orange-600  md:block lg:block"
+                                >
+                                    <FaWhatsappSquare className="text-3xl text-green-600 bg-white " />
+                                </a>
                             </div>
                         </div>
 
@@ -30,28 +39,50 @@ const Footer = () => {
                 <nav className="">
                     <h6 className="footer-title">Services</h6>
                     <div className="flex flex-col gap-2 ">
-                        <a className="link link-hover">Branding</a>
-                        <a className="link link-hover">Design</a>
-                        <a className="link link-hover">Marketing</a>
-                        <a className="link link-hover">Advertisement</a>
+                        <a className="link link-hover">
+                            <Link to='/brands'>Brands</Link>
+                        </a>
+                        
+                        <a className="link link-hover">Blogs</a>
+                        <a className="link link-hover">Categories</a>
+                        <a className="link link-hover">Service Center</a>
+                    
+                        <a className="link link-hover">
+                            <Link to='/policy'>privacy-policy</Link>
+                        </a>
+
+                        
                     </div>
 
                 </nav>
                 <nav className="">
                     <h6 className="footer-title">Company</h6>
                     <div className="flex flex-col gap-2 ">
-                        <a className="link link-hover">About us</a>
-                        <a className="link link-hover">Contact</a>
+                        <a className="link link-hover">
+                            <Link to='/about-us'>
+                            About us
+                            </Link>
+                            </a>
+                        <a
+                            href="https://wa.me/+14036941173"
+                            target="_blank"
+                            rel="noopener noreferrer"
+
+                            className="link link-hover"
+                        >
+                            Support us
+                        </a>
                         <a className="link link-hover">Jobs</a>
-                        <a className="link link-hover">Press kit</a>
+                        <a className="link link-hover">Baby kit</a>
                     </div>
+                    
 
                 </nav>
 
 
             </footer>
             <div className="text-center mb-[52px] md:mb-0 ">
-                <p>Copyright © ${new Date().getFullYear()} - All right reserved</p>
+                <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
             </div>
         </div>
     );

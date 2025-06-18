@@ -49,7 +49,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
         <NavLink onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
             <li>Contact</li>
         </NavLink>
-        <NavLink onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink to="/about-us" onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
             <li>About</li>
         </NavLink>
 

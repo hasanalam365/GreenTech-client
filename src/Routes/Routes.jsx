@@ -28,6 +28,8 @@ import UpdateProduct from "../Dashboard/Dashboard/UpdateProduct";
 import Categories from "../Pages/Categories/Categories";
 import Category from "../Components/Category";
 import Blogs from "../Pages/Blogs/Blogs";
+import About from "../Pages/About/About";
+import Policy from "../Components/Policy";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -73,7 +75,15 @@ const router = createBrowserRouter([
             {
                 path: '/category',
                 element: <Category></Category>
-            }
+            },
+            {
+                path: '/about-us',
+                element: <About></About>
+            },
+            {
+                path: '/policy',
+                element: <Policy></Policy>
+            },
         ]
     },
 
