@@ -19,7 +19,7 @@ const PopularProducts = () => {
                     <div className="flex items-center justify-between">
                         <h3 className="text-2xl md:text-3xl font-semibold">Popular Products</h3>
                         {
-                            populars.length > 5 && <Link to="/category"
+                            populars.length > 10 && <Link to="/category"
                                 state={{ category: 'Popular', products: populars, isLoading: isLoading }}
                                 className="text-lg md:text-xl font-medium text-orange-600 hover:scale-105">See more</Link>
                         }
@@ -27,7 +27,7 @@ const PopularProducts = () => {
                     <div className="divider mt-0"></div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
                         {
-                            populars.slice(0, 6).map(popular => <Link to={`/product/${popular._id}`} key={popular._id} className="card card-compact bg-base-100 shadow-xl mt-5 ">
+                            populars.slice(0, 10).map(popular => <Link to={`/product/${popular._id}`} key={popular._id} className="card card-compact bg-base-100 shadow-xl mt-5 ">
                                 <figure>
 
                                     <img className='w-full h-[150px] hover:scale-110' src={popular.imgUrl} alt="" />

@@ -1,56 +1,39 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
-import { Helmet } from "react-helmet-async";
 
 const OrderStatus = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
-    const { user } = useAuth()
-    const axioSecure = useAxiosSecure()
+  const { data: orderStatus = [] } = useQuery({
+    queryKey: ["order-status", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/orderStatus/${user.email}`);
+      return res.data;
+    },
+    refetchInterval: 3000,
+  });
 
-
-    const { data: orderStatus = [] } = useQuery({
-        queryKey: ['order-status'],
-        queryFn: async () => {
-            const res = await axioSecure.get(`/orderStatus/${user.email}`)
-            return res.data
-        }
-    })
-
-    return (
-        <div>
-            <Helmet>
-                <title>Status | Dashboard | Green Tech </title>
-            </Helmet>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>OrderId</th>
-                            <th>Order Date</th>
-                            <th>Status</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            orderStatus?.map((status, idx) =>
-                                <tr key={status._id}>
-                                    <th>{idx + 1}</th>
-                                    <td>{status.orderId}</td>
-                                    <td>{status.orderDate}</td>
-                                    <td className={`${status.status === 'pending' ? 'bg-orange-400 text-white' : 'bg-green-600 text-white'}`}>{status.status}</td>
-
-                                </tr>)
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    );
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2">Your Orders</h2>
+      <table className="table">
+        <thead>
+          <tr><th>ID</th><th>Email</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          {orderStatus.map((order, i) => (
+            <tr key={i}>
+              <td>{order.orderId}</td>
+              <td>{order.email}</td>
+              <td>{order.status.replace('_', ' ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default OrderStatus;

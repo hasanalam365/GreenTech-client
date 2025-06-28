@@ -1,14 +1,15 @@
 import axios from "axios";
 
 export const axiosPublic = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-})
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, 
+});
 
 const useAxiosPublic = () => {
-    return axiosPublic
+  return axiosPublic;
 };
 
 export default useAxiosPublic;

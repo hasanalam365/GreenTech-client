@@ -30,6 +30,7 @@ import Category from "../Components/Category";
 import Blogs from "../Pages/Blogs/Blogs";
 import About from "../Pages/About/About";
 import Policy from "../Components/Policy";
+import AdminOrderStatusControl from "../Dashboard/AdminDashboard.jsx/AdminOrderControl";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -166,6 +167,12 @@ const router = createBrowserRouter([
                     const apiUrl = import.meta.env.VITE_API_URL;
                     return fetch(`${apiUrl}/details-confirm-order/${params.id}`);
                 }
+            },
+            {
+                path: '/dashboard/order-status',
+                element: <AdminRoute>
+                    <AdminOrderStatusControl></AdminOrderStatusControl>
+                </AdminRoute>
             },
             {
                 path: '/dashboard/add-product',

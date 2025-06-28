@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 import CategoryProduct from "../../../Components/CategoryProduct";
 import useProductsData from "../../../hooks/useProductsData";
+import Testimonial from "../Testimonial/Testimonials"
+import Contact from "../Contact/Contact"
 import { Helmet } from "react-helmet-async";
 
 const Home = () => {
@@ -18,6 +20,7 @@ const Home = () => {
     const populars = products.filter(product => product.category === 'Popular')
     const newArrivals = products.filter(product => product.category === 'New Arrival')
     const securityCameras = products.filter(product => product.category === 'Security Camera')
+    const smartPhones = products.filter(product => product.category === 'Smart Phone')
 
     // Show or hide the button based on scroll direction
     const handleScroll = () => {
@@ -72,6 +75,7 @@ const Home = () => {
 
             <CategoriesList />
 
+            <CategoryProduct categoryProducts={smartPhones} categoryName="Smart Phone"></CategoryProduct>
             <CategoryProduct categoryProducts={newArrivals} categoryName="New Arrival"></CategoryProduct>
 
 
@@ -92,6 +96,11 @@ const Home = () => {
 
             <CategoryProduct categoryProducts={securityCameras} categoryName="Security Camera"></CategoryProduct>
 
+
+            <Testimonial></Testimonial>
+
+            <Contact></Contact>
+            
             <div className="divider"></div>
             <BrandsLogo></BrandsLogo>
             <div className="divider"></div>

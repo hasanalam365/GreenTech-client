@@ -22,6 +22,7 @@ const Categories = () => {
     const wearableTech = products.filter(product => product.category === 'Wearable Tech')
     const homeAutomation = products.filter(product => product.category === 'Home Automation')
     const portableDevices = products.filter(product => product.category === 'Portable Devices')
+    const smartPhones = products.filter(product => product.category === 'Smart Phone')
 
 
     return (
@@ -34,6 +35,7 @@ const Categories = () => {
                 <NewArrival></NewArrival>
                 <PopularProducts></PopularProducts>
                 <SecurityCamera></SecurityCamera>
+                   <CategoryProduct categoryProducts={smartPhones} categoryName="Smart Phone"></CategoryProduct>
                 <CategoryProduct categoryProducts={gadgetDeals} categoryName="Gadget Deals"></CategoryProduct>
                 <CategoryProduct categoryProducts={SmartHome} categoryName="Smart Home"></CategoryProduct>
                 <CategoryProduct categoryProducts={techEssentials} categoryName="Tech Essentials"></CategoryProduct>
@@ -44,6 +46,7 @@ const Categories = () => {
                 <CategoryProduct categoryProducts={wearableTech} categoryName="Wearable Tech"></CategoryProduct>
                 <CategoryProduct categoryProducts={homeAutomation} categoryName="Home Automation"></CategoryProduct>
                 <CategoryProduct categoryProducts={portableDevices} categoryName="Portable Devices"></CategoryProduct>
+             
             </div>
             <div className="mt-10 md:mt-5 lg:mt-5 ml-10 md:w-[23%] p-4 md:fixed md:right-1 md:top-10 lg:fixed lg:right-1 lg:top-10">
                 {/* Categpries Right Side */}

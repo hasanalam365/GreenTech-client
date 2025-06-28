@@ -107,6 +107,13 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                 </Link>
                             </li>}
                             {isAdmin && <li>
+                                <Link onClick={() => setIsOpenNav(false)} to='/dashboard/order-status' className="flex items-center p-2 space-x-3 rounded-md">
+
+                                    <IoIosCloudDone className="text-xl" />
+                                    <span>All Order Status</span>
+                                </Link>
+                            </li>}
+                            {isAdmin && <li>
                                 <Link onClick={() => setIsOpenNav(false)} to='/dashboard/allusers' className="flex items-center p-2 space-x-3 rounded-md">
 
                                     <FaUsers className="text-xl"></FaUsers >
@@ -219,6 +226,14 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                 <IoIosCloudDone className="text-xl" />
 
                                 <span>Confirm Orders</span>
+                            </NavLink>
+                        </li>}
+
+                        {isAdmin && <li>
+                            <NavLink onClick={() => setIsOpenNav(false)} to='/dashboard/order-status' className={({ isActive }) => isActive ? 'text-orange-600 flex items-center p-2 space-x-3 rounded-md' : 'dark:bg-gray-100 dark:text-gray-900 flex items-center p-2 space-x-3 rounded-md'}>
+                                <FaUsers className="text-xl"></FaUsers >
+
+                                <span>All Order track</span>
                             </NavLink>
                         </li>}
                         {isAdmin && <li>

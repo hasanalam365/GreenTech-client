@@ -30,24 +30,24 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
     })
 
     const navLinks = <>
-        <NavLink to="/" onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink to="/" onClick={() => setNavOpen(false)} className='hover:text-[#077A7D]'>
             <li>Home</li>
         </NavLink>
-        <NavLink onClick={() => setNavOpen(false)} to='/brands' className='hover:text-orange-600'>
+        <NavLink onClick={() => setNavOpen(false)} to='/brands' className='hover:text-[#077A7D]'>
             <li>Brands</li>
         </NavLink>
-        <NavLink to='/categories' onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink to='/categories' onClick={() => setNavOpen(false)} className='hover:text-[#077A7D]'>
             <li>Categories</li>
         </NavLink>
-        <NavLink to="/blogs" onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink to="/blogs" onClick={() => setNavOpen(false)} className='hover:text-[#077A7D]'>
             <li>Blogs</li>
         </NavLink>
 
         
-        <NavLink onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink onClick={() => setNavOpen(false)} className='hover:text-[#077A7D]'>
             <li>Contact</li>
         </NavLink>
-        <NavLink to="/about-us" onClick={() => setNavOpen(false)} className='hover:text-orange-600'>
+        <NavLink to="/about-us" onClick={() => setNavOpen(false)} className='hover:text-[#077A7D]'>
             <li>About</li>
         </NavLink>
 
@@ -60,7 +60,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
 
 
     return (
-        <div className="navbar bg-base-100 container mx-auto h-[66px] z-40 md:z-10 lg:z-10 fixed top-0">
+        <div className="navbar bg-[#0D1B2A]  container mx-auto h-[66px] z-50 md:z-10 lg:z-10 fixed top-0 ">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -81,7 +81,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
                     </div>
                     {navOpen && <ul
                         tabIndex={0}
-                        className="menu  dropdown-content bg-base-100  z-10 mt-2 w-80 p-2 shadow text-lg space-y-2  font-medium ">
+                        className="menu  dropdown-content bg-base-100  z-10 mt-2 w-80 p-2 shadow text-lg space-y-2  font-medium text-[#0D1B2A] ">
                         {navLinks}
 
                         <div className="divider"></div>
@@ -102,13 +102,13 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
                 </div>
                 <Link to='/' className="hover:scale-105">
                    
-                    <img src="https://i.ibb.co/23jC9QSt/Green-Logo-2.png" className="w-[100px] md:w-[120px] lg:w-[170px] h-[50px]" alt="" />
+                    <img src="https://i.ibb.co/4Zdz1LPN/navLogo.png" className="w-[100px] md:w-[120px] lg:w-[170px] h-[50px]" alt="" />
                     {/* <h3 className="text-lg font-semibold">Green Tech</h3> */}
 
                 </Link>
 
             </div>
-            <div className="hidden md:block lg:hidden">
+            <div className="hidden md:block lg:hidden ">
                 <label className="input input-bordered flex items-center gap-2 ">
 
                     <input onChange={(e) => setSearch(e.target.value)} type="text" className="w-[115px] md:w-[250px]" placeholder="Search Products" />
@@ -116,7 +116,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
                 </label>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 gap-5 text-lg font-medium">
+                <ul className="menu menu-horizontal px-1 gap-5 text-lg font-medium text-white">
                     {navLinks}
                 </ul>
                 <label className="input input-bordered flex items-center gap-2 ml-5">
@@ -126,7 +126,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
                 </label>
             </div>
 
-            <div className="navbar-end">
+            <div className="navbar-end text-white">
 
                 <div className="">
                     <div className="flex items-center justify-center gap-4 ml-5 mr-5">
@@ -165,7 +165,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
 
                     {
                         isOpenProfile && <div className="absolute z-10 p-4 bg-green-100 top-16 right-16 rounded-lg">
-                            <ul className="font-medium space-y-1">
+                            <ul className="font-medium space-y-1 text-[#0D1B2A]">
                                 <li className="hover:text-orange-600">
                                     <Link to="/dashboard">My Profile</Link>
                                 </li>

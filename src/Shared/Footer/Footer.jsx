@@ -6,13 +6,13 @@ import { FaWhatsappSquare } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className="bg-base-300">
-            <footer className="grid md:grid-cols-3 lg:grid-cols-3  text-base-content p-10 gap-10">
+        <div className="bg-[#0D1B2A] text-[#F5F5F5]">
+            <footer className="grid md:grid-cols-3 lg:grid-cols-3   p-10 gap-10">
                 <nav>
                     {/* <h6 className="footer-title">Social</h6> */}
                     <Link to="/" className="">
-                        {/* <img className="w-[100px] h-[50px]" src="/logo.png" alt="" /> */}
-                        <h3 className="text-2xl font-bold">Green Tech</h3>
+                        <img className="w-[170px] h-[70px] hover:scale-105" src="https://i.ibb.co/4Zdz1LPN/navLogo.png" alt="logo image" />
+                       
                     </Link>
                     <div className="grid grid-flow-col gap-4">
                         <div className="space-y-3">
