@@ -17,7 +17,7 @@ const Category = () => {
                 <div className="w-16 h-16 border-4 border-dashed border-orange-500 rounded-full animate-spin dark:border-default-600 text-orange-600"></div>
             </div> :
                 <div>
-                    <h3 className="text-2xl md:text-3xl font-semibold mt-5">{category} Products</h3>
+                    <h3 className="text-2xl md:text-3xl font-semibold mt-5">{category} </h3>
                     <div className="divider"></div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
 

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import ServiceSection from "../Home/ServiceSection";
 
 const brandList = [
     {
@@ -130,7 +131,8 @@ const brandList = [
 
 const Brands = () => {
     return (
-        <div className="container mx-auto px-4 mt-16 mb-16">
+        <div>
+             <div className="container mx-auto px-4 mt-16 mb-16">
             <Helmet>
                 <title>Brands | Green Tech</title>
             </Helmet>
@@ -159,7 +161,9 @@ const Brands = () => {
                     </motion.div>
                 ))}
             </div>
-        </div>
+            </div>
+            <ServiceSection></ServiceSection>
+       </div>
     );
 };
 
