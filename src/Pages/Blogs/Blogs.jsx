@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import ServiceSection from '../../Components/ServiceSection';
+import ServiceSection from "../Home/ServiceSection"
 
 const blogPosts = [
   {

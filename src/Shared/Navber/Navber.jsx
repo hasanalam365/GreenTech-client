@@ -60,7 +60,7 @@ const Navber = ({ setOpenCart, openCart, setSearch }) => {
 
 
     return (
-        <div className="navbar bg-[#0D1B2A]  container mx-auto h-[66px] z-50 md:z-10 lg:z-10 fixed top-0 ">
+        <div className="navbar bg-[#0D1B2A]  container mx-auto h-[66px] z-50 md:z-50 lg:z-50 fixed top-0 ">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

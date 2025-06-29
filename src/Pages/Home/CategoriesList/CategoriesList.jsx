@@ -12,6 +12,10 @@ const getCategoryIcon = (category) => {
     if (lower.includes("camera")) return "📷";
     if (lower.includes("phone")) return "📱";
     if (lower.includes("home")) return "🏠";
+    if (lower.includes("popular")) return "🔥";
+if (lower.includes("new") || lower.includes("arrival")) return "🆕";
+if (lower.includes("gadget")) return "🧰";
+
     return "🛒";
 };
 

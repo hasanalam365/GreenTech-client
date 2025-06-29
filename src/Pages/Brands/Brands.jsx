@@ -18,113 +18,43 @@ const brandList = [
         logo: "https://i.ibb.co/dfvZYm0/lenevo-removebg-preview.png",
         bg: "bg-base-100"
     },
-    {
-        name: "Apple",
-        logo: "https://i.ibb.co/3SmwBp4/apple-logo.png",
-        bg: "bg-white"
-    },
-    {
-        name: "Xiaomi",
-        logo: "https://i.ibb.co/Zxg6Tgx/xiaomi-logo.png",
-        bg: "bg-white"
-    },
-    {
-        name: "Realme",
-        logo: "https://i.ibb.co/6bByKH2/realme-logo.png",
-        bg: "bg-white"
-    },
-    {
-    name: "Huawei",
-    logo: "https://i.ibb.co/4YxZk4M/huawei-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Samsung",
-    logo: "https://i.ibb.co/5110PgS/samsung-removebg-preview.png",
-    bg: "bg-white"
-},
+  
+
 {
     name: "Apple",
-    logo: "https://i.ibb.co/3SmwBp4/apple-logo.png",
+    logo: "https://i.ibb.co/5x686QyC/iphone-logo.png",
     bg: "bg-white"
 },
 {
     name: "Xiaomi",
-    logo: "https://i.ibb.co/Zxg6Tgx/xiaomi-logo.png",
+    logo: "https://i.ibb.co/Mkmhgd9C/xioami-brand-logo.jpg",
     bg: "bg-white"
 },
 {
     name: "Realme",
-    logo: "https://i.ibb.co/6bByKH2/realme-logo.png",
+    logo: "https://i.ibb.co/XxyzXCwf/realme-logo.png",
     bg: "bg-white"
 },
 {
     name: "OnePlus",
-    logo: "https://i.ibb.co/ZJ8c94H/oneplus-logo.png",
+    logo: "https://i.ibb.co/R4gzHC5Z/one-plus-brand-logo.png",
     bg: "bg-white"
 },
 {
     name: "Huawei",
-    logo: "https://i.ibb.co/4YxZk4M/huawei-logo.png",
+    logo: "https://i.ibb.co/GKrqGms/huawei-brand-logo.png",
     bg: "bg-white"
 },
 {
     name: "Tecno",
-    logo: "https://i.ibb.co/TTZyktH/tecno-logo.png",
+    logo: "hhttps://i.ibb.co/VWhWR8k3/tecno-brand-logo.jpg",
     bg: "bg-white"
 },
 {
     name: "Infinix",
-    logo: "https://i.ibb.co/4WzRvsL/infinix-logo.png",
+    logo: "https://i.ibb.co/v6tkd72G/infinix-brand-logo.jpg",
     bg: "bg-white"
     },
-{
-    name: "Amazfit",
-    logo: "https://i.ibb.co/NK1ZVqL/amazfit-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Oraimo",
-    logo: "https://i.ibb.co/J3Z3TPc/oraimo-removebg-preview.png",
-    bg: "bg-white"
-},
-{
-    name: "Noise",
-    logo: "https://i.ibb.co/ChTdJ4k/noise-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Fire-Boltt",
-    logo: "https://i.ibb.co/D9KqSJN/fireboltt-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "boAt",
-    logo: "https://i.ibb.co/Yb7pG17/boat-logo.png",
-    bg: "bg-white"
-    },
-{
-    name: "Mi Box",
-    logo: "https://i.ibb.co/SRPjgvD/mi-box-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Realme TV Stick",
-    logo: "https://i.ibb.co/xFGkybM/realme-tv-stick-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Amazon Fire TV",
-    logo: "https://i.ibb.co/vx3GpHr/fire-tv-logo.png",
-    bg: "bg-white"
-},
-{
-    name: "Google Chromecast",
-    logo: "https://i.ibb.co/2cqzTV5/chromecast-logo.png",
-    bg: "bg-white"
-}
-
-
 
 
 ];

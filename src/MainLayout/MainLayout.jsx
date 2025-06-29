@@ -30,14 +30,17 @@ const MainLayout = () => {
 
     return (
         <div
-            className="min-h-screen relative bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('https://i.ibb.co/FhQC8JK/green-tech-bg.jpg')" }}
-        >
+        className="min-h-screen relative bg-cover bg-center bg-no-repeat"
+        style={{
+            backgroundImage: "linear-gradient(to bottom right, #D8F1EE, #D7EFED, #D9F1EF)"
+        }}
+    >
+
             {/* Overlay for better readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#e7f7ec]/90 to-white/90 backdrop-blur-sm pointer-events-none"></div>
 
             {/* Content Wrapper */}
-            <div className="relative container mx-auto px-4">
+            <div className="relative container mx-auto ">
                 <div>
                     <Navber setOpenCart={setOpenCart} openCart={openCart} setSearch={setSearch} />
                 </div>
