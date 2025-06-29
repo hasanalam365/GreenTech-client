@@ -23,6 +23,9 @@ const Categories = () => {
         "Wearable Tech": products.filter(product => product.category === "Wearable Tech"),
         "Home Automation": products.filter(product => product.category === "Home Automation"),
         "Portable Devices": products.filter(product => product.category === "Portable Devices"),
+        "New Arrival": products.filter(product => product.category === "New Arrival"),
+        "Popular": products.filter(product => product.category === "Popular"),
+        "Security Camera": products.filter(product => product.category === "Security Camera"),
     };
 
     return (
@@ -36,9 +39,7 @@ const Categories = () => {
 
                     {/* Left Side */}
                     <div className="w-full lg:w-3/4 space-y-12 animate__animated animate__fadeIn">
-                        <NewArrival />
-                        <PopularProducts />
-                        <SecurityCamera />
+                        
                         {Object.entries(categoryMap).map(([name, list]) =>
                             <CategoryProduct key={name} categoryProducts={list} categoryName={name} />
                         )}
