@@ -31,6 +31,7 @@ import Blogs from "../Pages/Blogs/Blogs";
 import About from "../Pages/About/About";
 import Policy from "../Components/Policy";
 import AdminOrderStatusControl from "../Dashboard/AdminDashboard.jsx/AdminOrderControl";
+import NotFound from "../Components/NotFound";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 path: '/',
@@ -94,6 +96,7 @@ const router = createBrowserRouter([
             {/* <Dashboard></Dashboard> */}
             <DashboardLayout></DashboardLayout>
         </PrivateRoute>,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 path: '/dashboard',

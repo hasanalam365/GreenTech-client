@@ -30,7 +30,7 @@ const MainLayout = () => {
 
     return (
         <div
-        className="min-h-screen relative bg-cover bg-center bg-no-repeat"
+        className="min-h-screen relative bg-cover bg-center bg-no-repeat overflow-x-hidden"
         style={{
             backgroundImage: "linear-gradient(to bottom right, #D8F1EE, #D7EFED, #D9F1EF)"
         }}
