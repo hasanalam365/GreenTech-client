@@ -52,7 +52,7 @@ const UpdateProduct = () => {
     }
 
     return (
-        <div className="flex items-center justify-center mt-10 ">
+        <div className="flex items-center justify-center mt-10 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
             <Helmet>
                 <title>Update Product | Admin | Green Tech </title>
             </Helmet>

@@ -22,7 +22,7 @@ const AdminOrderStatusControl = () => {
   const statusOptions = ["pending", "packaged", "transport", "delivery_done"];
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
       <h2 className="text-xl font-bold mb-4">Admin Order Control</h2>
       <table className="table">
         <thead>

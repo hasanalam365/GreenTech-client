@@ -20,7 +20,7 @@ const Mycarts = () => {
     }
 
     return (
-        <div className="md:mt-8 lg:mt-0">
+        <div className="md:mt-8 lg:mt-0 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
             <Helmet>
                 <title>My Cart | Green Tech </title>
             </Helmet>

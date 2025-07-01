@@ -76,7 +76,7 @@ const AddProduct = () => {
     }
 
     return (
-        <div>
+        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
             <Helmet>
                 <title>Add Product | Admin | Green Tech </title>
             </Helmet>

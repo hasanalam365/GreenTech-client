@@ -93,7 +93,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
       <Helmet><title>{title} | {category} | Green Tech</title></Helmet>
       <div className="bg-base-200 p-8 pt-20">
         <motion.div className="flex flex-col lg:flex-row gap-5" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

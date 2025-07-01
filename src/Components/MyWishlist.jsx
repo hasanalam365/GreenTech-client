@@ -50,7 +50,7 @@ const MyWishlist = () => {
     }
 
     return (
-        <div className="md:w-full mx-auto mt-8">
+        <div className="md:w-full mx-auto  bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
             <Helmet>
                 <title>Wishlist | Dashboard | Green Tech </title>
             </Helmet>
