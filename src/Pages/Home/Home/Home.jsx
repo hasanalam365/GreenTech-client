@@ -4,7 +4,7 @@ import BrandsLogo from "../BrandsLogo/BrandsLogo";
 import CategoriesList from "../CategoriesList/CategoriesList";
 import ServiceSection from "../ServiceSection";
 import { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa6";
+import { FaArrowUp, FaChevronUp } from "react-icons/fa6";
 import CategoryProduct from "../../../Components/CategoryProduct";
 import useProductsData from "../../../hooks/useProductsData";
 import Testimonial from "../Testimonial/Testimonials"
@@ -106,14 +106,16 @@ const Home = () => {
             <div className="divider"></div>
             <ServiceSection></ServiceSection>
 
-            <div className="fixed bottom-5 md:bottom-20 lg:bottom-20 right-5 z-50">
+            <div className="fixed bottom-5 md:bottom-10 lg:bottom-10 right-5 z-50">
                 {isVisible && (
+                  
                     <button
-                        onClick={scrollToTop}
-                        className="bg-orange-600 text-white p-2 rounded-full shadow-lg hover:bg-orange-800 transition duration-300 "
-                    >
-                        <FaArrowUp className="text-xl" />
-                    </button>
+                              onClick={scrollToTop}
+                              className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition duration-300 animate__animated animate__fadeInUp"
+                              aria-label="Scroll to top"
+                            >
+                              <FaChevronUp className="text-xl" />
+                            </button>
                 )}
             </div>
         </div>
