@@ -4,182 +4,147 @@ import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import axios from "axios";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOST_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
+  const { signUpUser, signOutUser } = useAuth();
+  const navigate = useNavigate();
+  const [correctPass, setCorrectPass] = useState("");
+  const [imgPrev, setImgPrev] = useState("");
+  const [errorText, setErrorText] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
-    const { signUpUser, signOutUser } = useAuth()
-    const navigate = useNavigate()
-    const [correctPass, setCorrectPass] = useState('')
-    const [imgPrev, setImgPrev] = useState('')
-    const [errorText, setErrorText] = useState('')
-    const axiosPublic = useAxiosPublic()
+  const handleAddress = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true); 
 
-    const handleAddress = async (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const displayName = form.name.value;
-        const phone = form.phone.value;
-        const email = form.email.value;
-        const photo = form.photo.files[0];
-        const division = form.division.value;
-        const district = form.district.value;
-        const thana = form.thana.value;
-        const address = form.address.value;
-        const confirmPassword = form.confirmPassword.value
+    try {
+      const form = e.target;
+      const displayName = form.name.value;
+      const phone = form.phone.value;
+      const email = form.email.value;
+      const photo = form.photo.files[0];
+      const division = form.division.value;
+      const district = form.district.value;
+      const thana = form.thana.value;
+      const address = form.address.value;
+      const confirmPassword = form.confirmPassword.value;
 
-        if (correctPass !== confirmPassword) {
-            return setErrorText('Password Not Match')
-        }
+      if (correctPass !== confirmPassword) {
+        setErrorText("Password Not Match");
+        setIsSubmitting(false);
+        return;
+      }
 
-        // //image upload 
-        const formData = new FormData();
-        formData.append('image', photo);
-        const res = await axiosPublic.post(image_hosting_api, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-        });
-        const photoURL = res.data.data.display_url;
-        const userInfo = {
-            displayName, phone, email, division, district, thana, address, photoURL
-        }
+      const formData = new FormData();
+      formData.append("image", photo);
 
+      const res = await axios.post(image_hosting_api, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: false
+      });
+      const photoURL = res.data.data.display_url;
 
-        const resUser = await axiosPublic.post(`/newUser`, userInfo)
+      const userInfo = {
+        displayName,
+        phone,
+        email,
+        division,
+        district,
+        thana,
+        address,
+        photoURL
+      };
 
-        if (resUser.data.insertedId) {
-            signUpUser(email, confirmPassword)
-                .then((result) => {
+      const resUser = await axiosPublic.post(`/newUser`, userInfo);
 
-                    if (result.user) {
-                        toast("Register Successfully!")
+      if (resUser.data.insertedId) {
+        signUpUser(email, confirmPassword)
+          .then((result) => {
+            if (result.user) {
+              toast("Register Successfully!");
+              signOutUser();
+              navigate("/login");
+            }
+          })
+          .catch(() => toast.error("User already exists"))
+          .finally(() => setIsSubmitting(false)); 
+      } else {
+        setIsSubmitting(false);
+      }
 
-                    }
-
-                    signOutUser()
-                    navigate("/login")
-                })
-                .catch(() => {
-                    toast.error("User already exists")
-                })
-        }
-
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong");
+      setIsSubmitting(false);
     }
+  };
 
-    const handleImg = (e) => {
-        const photo = e.target.files[0];
-        setImgPrev(photo.name)
+  return (
+    <motion.div
+      className="pt-16 min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Helmet>
+        <title>Register | Green Tech </title>
+      </Helmet>
+      <motion.section
+        className="dark:text-gray-900 md:w-3/4 lg:w-1/2 mx-auto bg-white shadow-lg rounded-lg p-6"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <form onSubmit={handleAddress} className="space-y-6">
+          <h2 className="text-3xl font-semibold text-center text-green-800">Create Your Account</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input name="name" type="text" placeholder="Full Name" className="input input-bordered w-full" required />
+            <input name="email" type="email" placeholder="Email" className="input input-bordered w-full" required />
+            <input name="phone" type="text" placeholder="Phone" className="input input-bordered w-full" required />
+            <input name="division" type="text" placeholder="Division" className="input input-bordered w-full" required />
+            <input name="district" type="text" placeholder="District" className="input input-bordered w-full" required />
+            <input name="thana" type="text" placeholder="Thana" className="input input-bordered w-full" required />
+            <input name="address" type="text" placeholder="Full Address" className="input input-bordered col-span-full" required />
+            <div className="col-span-full">
+              <label className="block mb-1 font-medium">Profile Photo</label>
+              <input type="file" name="photo" onChange={(e) => setImgPrev(e.target.files[0]?.name)} required />
+              <p className="text-sm mt-1 text-green-600">{imgPrev || "No file selected"}</p>
+            </div>
+            <input type="password" name="password" placeholder="Password" onChange={(e) => setCorrectPass(e.target.value)} className="input input-bordered w-full" required />
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" className="input input-bordered w-full" required />
+            {errorText && <p className="text-red-600 col-span-full">{errorText}</p>}
+          </div>
 
-    }
+          <motion.button
+            type="submit"
+            className="btn btn-secondary w-full mt-4 flex justify-center"
+            disabled={isSubmitting}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+          >
+            {isSubmitting ? (
+              <span className="loading loading-spinner text-green-400"></span>
+            ) : (
+              "Register"
+            )}
+          </motion.button>
+        </form>
 
-    const handlePassword = e => {
-        setCorrectPass(e.target.value)
-    }
-
-
-    return (
-        <div className="pt-16 mb-8">
-            <Helmet>
-                <title>Register | Green Tech </title>
-            </Helmet>
-            <section className="  dark:text-gray-900  md:w-3/4 lg:1/2 mx-auto bg-gray-200">
-                <form onSubmit={handleAddress} className="container flex flex-col mx-auto space-y-12">
-                    <fieldset className=" p-6 rounded-md shadow-sm dark:bg-gray-50">
-
-                        <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="fullname" className="font-medium">Full Name</label>
-                                <input id="fullName" name="name" type="text" placeholder="Full Name" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-                            <div className="col-span-full  sm:col-span-3">
-                                <label htmlFor="fullname" className="font-medium">Email</label>
-                                <input id="fullName" name="email" type="text" placeholder="Email" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="phone" className="font-medium">Phone</label>
-                                <input id="phone" type="text" name="phone" placeholder="Phone Number" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="Division" className="font-medium">Division</label>
-                                <input id="division" type="text"
-                                    name="division" placeholder="Division" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="District" className="font-medium">District</label>
-                                <input id="district" type="text"
-                                    name="district" placeholder="District" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="Thana" className="font-medium">Thana</label>
-                                <input id="thana" type="text"
-                                    name="thana" placeholder="Thana" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-
-                            <div className=' col-span-full sm:col-span-3 text-center'>
-                                <label>
-                                    <input onChange={handleImg} className='text-sm cursor-pointer w-36 hidden'
-                                        type='file'
-                                        name='photo'
-                                        id='image'
-                                        accept='image/*'
-
-                                        required
-                                    />
-
-
-                                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
-                                        Upload Image
-                                    </div>
-                                </label>
-                            </div>
-                            {imgPrev ? <div className="col-span-full sm:col-span-3 flex items-center ">
-                                {imgPrev}
-                            </div> :
-                                <div className="col-span-full sm:col-span-3 flex items-center text-red-600">
-                                    No file Select
-
-                                </div>
-                            }
-                            <div className="col-span-full">
-                                <label htmlFor="address" className="font-medium">Address</label>
-                                <input id="address" type="text"
-                                    name="address" placeholder="Building/House/Street" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300  p-2" required />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="Thana" className="font-medium">Password</label>
-                                <input id="Password" type="text"
-                                    onChange={handlePassword}
-                                    name="password" placeholder="Password" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                            </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="Confirm Password" className="font-medium">Confirm Password</label>
-                                <input id="Confirm Password" type="text"
-                                    name="confirmPassword" placeholder="Confirm Password" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-default-600 dark:border-gray-300 p-2" required />
-                                {
-                                    errorText && <p className="text-red-600">{errorText}</p>
-                                }
-                            </div>
-                        </div>
-
-                        <div className="mt-2">
-                            <button className="btn btn-secondary w-full">Register</button>
-                        </div>
-                    </fieldset>
-
-                </form>
-                <div className=" w-full mx-auto rounded-lg p-2 mb-3">
-                    <div className="flex gap-1 items-center justify-center ">
-
-                        <h5 className="">Already have an account ?</h5>
-                        <span> Please</span>
-                        <Link to="/login" className="text-blue-600">Log In</Link>
-                    </div>
-                </div>
-            </section>
+        <div className="mt-4 text-center">
+          <p className="text-sm">
+            Already have an account?
+            <Link to="/login" className="text-green-700 font-semibold hover:underline ml-1">Log In</Link>
+          </p>
         </div>
-    );
+      </motion.section>
+    </motion.div>
+  );
 };
 
 export default Register;
