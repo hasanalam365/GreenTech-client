@@ -32,6 +32,7 @@ import About from "../Pages/About/About";
 import Policy from "../Components/Policy";
 import AdminOrderStatusControl from "../Dashboard/AdminDashboard.jsx/AdminOrderControl";
 import NotFound from "../Components/NotFound";
+import AllMessages from "../Dashboard/AdminDashboard.jsx/AllMessages";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -175,6 +176,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/order-status',
                 element: <AdminRoute>
                     <AdminOrderStatusControl></AdminOrderStatusControl>
+                </AdminRoute>
+            },
+            {
+                path: '/dashboard/all-messages',
+                element: <AdminRoute>
+                    <AllMessages></AllMessages>
                 </AdminRoute>
             },
             {

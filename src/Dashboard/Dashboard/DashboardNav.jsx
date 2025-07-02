@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { IoBagCheckOutline } from "react-icons/io5";
-import { MdChangeCircle, MdDashboard, MdHomeWork } from "react-icons/md";
+import { MdChangeCircle, MdDashboard, MdForwardToInbox, MdHomeWork } from "react-icons/md";
 import useUser from "../../hooks/useUser";
 import { BiMenuAltRight } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -17,8 +17,7 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
     const [userData, refetch] = useUser();
     const { user, signOutUser } = useAuth();
 
-    // useAdmin থেকে isAdmin আর isLoading দুইটাই ধরছি
-    // যদি তোমার useAdmin hook এ loading না থাকে, তাহলে নীচের মতো পরিবর্তন করতে হবে
+   
     const [isAdmin, isLoading] = useAdmin();
 
     const handleLogOut = () => {
@@ -388,6 +387,21 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                     >
                                         <FaUsers className="text-xl" />
                                         <span>All Users</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/all-messages"
+                                        onClick={() => setIsOpenNav(false)}
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "text-orange-600 flex items-center p-2 space-x-3 rounded-md"
+                                                : "dark:bg-gray-100 dark:text-gray-900 flex items-center p-2 space-x-3 rounded-md"
+                                        }
+                                    >
+                                        <MdForwardToInbox className="text-xl" />
+                                       
+                                        <span>Messages</span>
                                     </NavLink>
                                 </li>
                                 <li>

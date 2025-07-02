@@ -13,8 +13,9 @@ const Category = () => {
 
     return (
         <div className="p-4 mt-10">
-            {isLoading ? <div className="flex items-center justify-center ">
-                <div className="w-16 h-16 border-4 border-dashed border-orange-500 rounded-full animate-spin dark:border-default-600 text-orange-600"></div>
+            {isLoading ?  <div className="flex justify-center items-center min-h-[300px]">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+                <span className="ml-4 text-green-600 font-semibold">Loading...</span>
             </div> :
                 <div>
                     <h3 className="text-2xl md:text-3xl font-semibold mt-5">{category} </h3>

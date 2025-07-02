@@ -94,9 +94,10 @@ const CheckoutPage = () => {
                 </div>
                 {
                     isLoading ? (
-                        <div className="flex items-center justify-center mt-5">
-                            <div className="w-12 h-12 border-4 border-dashed border-orange-500 rounded-full animate-spin dark:border-default-600 text-orange-600"></div>
-                        </div>
+                        <div className="flex justify-center items-center min-h-[300px]">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+                        <span className="ml-4 text-green-600 font-semibold">Loading...</span>
+                    </div>
                     ) : data.length === 0 ? (
                         <div className="mt-10 text-center text-xl font-medium">Your cart is empty!!!!!</div>
                     )

@@ -58,9 +58,10 @@ const MyWishlist = () => {
                 <h4 className="text-xl font-medium"> Wishlist:</h4>
             </div>
             {isLoading ? (
-                <div className="flex items-center justify-center ">
-                    <div className="w-16 h-16 border-4 border-dashed border-orange-500 rounded-full animate-spin dark:border-default-600 text-orange-600"></div>
-                </div>
+                 <div className="flex justify-center items-center min-h-[300px]">
+                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+                 <span className="ml-4 text-green-600 font-semibold">Loading...</span>
+             </div>
             ) : wishlistData.length === 0 ? <div className="mt-10 text-center text-2xl font-medium">Your wishlists is empty!</div> :
 
                 <div className="flex flex-col gap-3 mt-2 p-2">

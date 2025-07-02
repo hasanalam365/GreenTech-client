@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Navigation } from 'swiper/modules';
 
-// Icon helper
+// Icon helper (unchanged)
 const getCategoryIcon = (category) => {
     const lower = category.toLowerCase();
     if (lower.includes("watch")) return "⌚";
@@ -21,6 +21,16 @@ const getCategoryIcon = (category) => {
 
 const CategoriesList = () => {
     const [products, isLoading] = useProductsData();
+
+    if (isLoading) {
+        // Loading UI - centered spinner and text
+        return (
+            <div className="flex justify-center items-center min-h-[300px]">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+                <span className="ml-4 text-green-600 font-semibold">Loading...</span>
+            </div>
+        );
+    }
 
     const categories = products ? [...new Set(products.map(product => product.category))] : [];
 
