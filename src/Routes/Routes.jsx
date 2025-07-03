@@ -33,6 +33,9 @@ import Policy from "../Components/Policy";
 import AdminOrderStatusControl from "../Dashboard/AdminDashboard.jsx/AdminOrderControl";
 import NotFound from "../Components/NotFound";
 import AllMessages from "../Dashboard/AdminDashboard.jsx/AllMessages";
+import RefoundPolicy from "../Components/RefoundPolicy"
+import ShippingPolicy from "../Components/ShippingPolicy"
+import TermOfUse from "../Components/TermOfUse"
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -85,8 +88,20 @@ const router = createBrowserRouter([
                 element: <About></About>
             },
             {
-                path: '/policy',
+                path: '/privacy-policy',
                 element: <Policy></Policy>
+            },
+            {
+                path: '/refound-policy',
+                element: <RefoundPolicy></RefoundPolicy>
+            },
+            {
+                path: '/shipping-policy',
+                element: <ShippingPolicy></ShippingPolicy>
+            },
+            {
+                path: '/terms-of-use',
+                element: <TermOfUse></TermOfUse>
             },
         ]
     },
