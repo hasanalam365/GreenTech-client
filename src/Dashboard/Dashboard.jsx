@@ -46,12 +46,12 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="mt-0 p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen rounded-lg shadow-lg overflow-hidden">
+    <div className="mt-0 p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50   rounded-lg shadow-lg overflow-hidden">
       <h4 className="text-3xl font-bold mb-4 text-green-900">Dashboard</h4>
       <div className="divider border-green-300"></div>
 
       {isAdmin ? (
-        <div className="stats flex flex-col md:flex-row lg:flex-row gap-6 overflow-x-hidden">
+        <div className="stats flex flex-col md:flex-row lg:flex-row gap-6  ">
           <div className="stat bg-white rounded-xl shadow-md p-6 flex-1 cursor-pointer transform transition duration-300 hover:scale-103 hover:shadow-xl">
             <div className="stat-figure text-green-600">
               <TfiShoppingCartFull className="text-5xl" />
@@ -87,7 +87,7 @@ const Dashboard = () => {
           </div>
         </div>
       ) : (
-        <div className="stats flex flex-col md:flex-row lg:flex-row gap-6 overflow-x-hidden">
+        <div className="stats flex flex-col md:flex-row lg:flex-row gap-6  ">
           <div className="stat bg-white rounded-xl shadow-md p-6 flex-1 cursor-pointer transform transition duration-300 hover:scale-103 hover:shadow-xl">
             <div className="stat-figure text-green-600">
               <TfiShoppingCartFull className="text-5xl" />

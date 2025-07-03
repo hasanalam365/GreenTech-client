@@ -83,7 +83,7 @@ const Brands = () => {
                         className={`card ${brand.bg} card-compact shadow-md border border-gray-200 transition-all duration-300 p-6 hover:shadow-xl cursor-pointer`}
                     >
                         <figure className="h-[100px] flex items-center justify-center">
-                            <img src={brand.logo} alt={brand.name} className="h-full object-contain" />
+                            <img src={brand.logo} alt={brand.name} className=" object-contain" />
                         </figure>
                         <div className="text-center mt-4">
                             <h3 className="text-lg font-semibold text-gray-800">{brand.name}</h3>

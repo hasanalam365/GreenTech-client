@@ -86,7 +86,7 @@ const AllUsers = () => {
 
 
     return (
-        <div className="flex flex-col mt-4 px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
+        <div className="flex flex-col mt-4 px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50  ">
             <Helmet>
                 <title>All Users | Admin | Green Tech </title>
             </Helmet>

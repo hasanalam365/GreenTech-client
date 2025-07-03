@@ -87,7 +87,7 @@ const Register = () => {
 
   return (
     <motion.div
-      className="pt-16 min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100"
+      className="pt-16   bg-gradient-to-br from-green-50 via-white to-green-100"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

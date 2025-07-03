@@ -175,6 +175,21 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                             </Link>
                                         </li>
                                         <li>
+                                    <NavLink
+                                        to="/dashboard/all-messages"
+                                        onClick={() => setIsOpenNav(false)}
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "text-orange-600 flex items-center p-2 space-x-3 rounded-md"
+                                                : "dark:bg-gray-100 dark:text-gray-900 flex items-center p-2 space-x-3 rounded-md"
+                                        }
+                                    >
+                                        <MdForwardToInbox className="text-xl" />
+                                       
+                                        <span>Messages</span>
+                                    </NavLink>
+                                </li>
+                                        <li>
                                             <Link
                                                 onClick={() => setIsOpenNav(false)}
                                                 to="/dashboard/add-product"

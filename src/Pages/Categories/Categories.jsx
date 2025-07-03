@@ -50,7 +50,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-green-50 via-white to-green-100 min-h-screen relative">
+    <div className="bg-gradient-to-br from-green-50 via-white to-green-100   relative">
       <Helmet>
         <title>Category | Green Tech</title>
       </Helmet>

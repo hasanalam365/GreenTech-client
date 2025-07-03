@@ -84,7 +84,7 @@ const CheckoutPage = () => {
 
 
     return (
-        <div className=" flex flex-col md:flex-row lg:flex-row gap-5 mt-3 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
+        <div className=" flex flex-col md:flex-row lg:flex-row gap-5 mt-3 bg-gradient-to-r from-green-50 via-green-100 to-green-50 ">
             <Helmet>
                 <title>Checkout | Green Tech</title>
             </Helmet>

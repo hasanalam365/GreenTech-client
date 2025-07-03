@@ -7,3 +7,7 @@
   background-color: #00b386;
   color: #fff;
 } */
+
+html {
+  scroll-behavior: smooth;
+}

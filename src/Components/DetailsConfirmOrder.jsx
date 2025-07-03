@@ -11,7 +11,7 @@ const DetailsConfirmOrder = () => {
     }
 
     return (
-        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
+        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50 ">
             <Helmet>
                 <title>Confirm Order | Admin | Green Tech </title>
             </Helmet>

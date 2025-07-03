@@ -30,7 +30,7 @@ const MainLayout = () => {
 
     return (
         <div
-        className="min-h-screen relative bg-cover bg-center bg-no-repeat overflow-x-hidden"
+        className="  relative bg-cover bg-center bg-no-repeat  "
         style={{
             backgroundImage: "linear-gradient(to bottom right, #D8F1EE, #D7EFED, #D9F1EF)"
         }}
@@ -47,7 +47,7 @@ const MainLayout = () => {
 
                 <div>
                     {allProducts.length > 0 &&
-                        <div className="overflow-x-auto fixed top-16 z-50 bg-gray-300 bg-opacity-90 h-full rounded-md shadow-lg">
+                        <div className=" fixed top-16 z-50 bg-gray-300 bg-opacity-90  rounded-md shadow-lg">
                             <table className="table table-zebra">
                                 <thead>
                                     <tr>

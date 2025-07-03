@@ -67,7 +67,7 @@ const blogPosts = [
 const BlogPage = () => {
   return (
       <div>
-            <div className="bg-gray-100 min-h-screen p-6 mt-20 flex items-center justify-center">
+            <div className="bg-gray-100   p-6 mt-20 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
            <Helmet>
                 <title>Blogs | Green Tech </title>
             </Helmet>

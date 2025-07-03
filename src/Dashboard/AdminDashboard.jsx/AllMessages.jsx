@@ -34,7 +34,7 @@ const AllMessages = () => {
   };
 
   return (
-    <div className="p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50 min-h-screen">
+    <div className="p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50  ">
       <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">📩 All Messages</h2>
 
       <div>
