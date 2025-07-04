@@ -67,12 +67,12 @@ const blogPosts = [
 const BlogPage = () => {
   return (
       <div>
-            <div className="bg-gray-100   p-6 mt-20 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+            <div className="   p-6 mt-16 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
            <Helmet>
                 <title>Blogs | Green Tech </title>
             </Helmet>
       <div className="mx-auto">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Latest Blog Posts</h1>
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Latest Blog Posts</h1>
         {blogPosts.map((post, index) => (
           <div
             key={index}

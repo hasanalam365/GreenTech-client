@@ -46,7 +46,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="mt-0 p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50   rounded-lg shadow-lg overflow-hidden">
+    <div className="mt-0 p-6 bg-gradient-to-r from-green-50 via-green-100 to-green-50   rounded-lg shadow-lg overflow-hidden h-full">
       <h4 className="text-3xl font-bold mb-4 text-green-900">Dashboard</h4>
       <div className="divider border-green-300"></div>
 

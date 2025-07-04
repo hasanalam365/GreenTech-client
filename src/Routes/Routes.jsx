@@ -18,24 +18,25 @@ import DashboardLayout from "../MainLayout/DashboardLayout";
 import AllUsers from "../Dashboard/Dashboard/AllUsers";
 import AdminRoute from "./AdminRoute";
 import Dashboard from "../Dashboard/Dashboard";
-import AllOrders from "../Dashboard/AdminDashboard.jsx/AllOrders";
+import AllOrders from "../Dashboard/AdminDashboard/AllOrders";
 import ViewOrderDetails from "../Components/ViewOrderDetails";
 import OrderStatus from "../Components/OrderStatus";
-import ConfirmOrders from "../Dashboard/AdminDashboard.jsx/ConfirmOrders";
+import ConfirmOrders from "../Dashboard/AdminDashboard/ConfirmOrders";
 import DetailsConfirmOrder from "../Components/DetailsConfirmOrder";
 import AddProduct from "../Dashboard/Dashboard/AddProduct";
-import UpdateProduct from "../Dashboard/Dashboard/UpdateProduct";
+import UpdateProduct from "../Dashboard/AdminDashboard/UpdateProduct";
 import Categories from "../Pages/Categories/Categories";
 import Category from "../Components/Category";
 import Blogs from "../Pages/Blogs/Blogs";
 import About from "../Pages/About/About";
 import Policy from "../Components/Policy";
-import AdminOrderStatusControl from "../Dashboard/AdminDashboard.jsx/AdminOrderControl";
+import AdminOrderStatusControl from "../Dashboard/AdminDashboard/AdminOrderControl";
 import NotFound from "../Components/NotFound";
-import AllMessages from "../Dashboard/AdminDashboard.jsx/AllMessages";
+import AllMessages from "../Dashboard/AdminDashboard/AllMessages";
 import RefoundPolicy from "../Components/RefoundPolicy"
 import ShippingPolicy from "../Components/ShippingPolicy"
 import TermOfUse from "../Components/TermOfUse"
+import AllProducts from "../Dashboard/Dashboard/AllProducts";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -209,6 +210,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/update-product',
                 element: <AdminRoute>
                     <UpdateProduct></UpdateProduct>
+                </AdminRoute>
+            },
+            {
+                path: '/dashboard/all-products',
+                element: <AdminRoute>
+                    <AllProducts></AllProducts>
                 </AdminRoute>
             },
 

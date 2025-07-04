@@ -50,19 +50,39 @@ const MyWishlist = () => {
     }
 
     return (
-        <div className="md:w-full mx-auto  bg-gradient-to-r from-green-50 via-green-100 to-green-50 ">
+        <div className="md:w-full mx-auto  bg-gradient-to-r from-green-50 via-green-100 to-green-50 h-full">
             <Helmet>
                 <title>Wishlist | Dashboard | Green Tech </title>
             </Helmet>
-            <div>
-                <h4 className="text-xl font-medium"> Wishlist:</h4>
-            </div>
+            <div className="text-center mb-6">
+        <h4 className="text-3xl font-bold text-green-700">Your Wishlist</h4>
+        <p className="text-gray-600">Save the products you love most!</p>
+      </div>
             {isLoading ? (
                  <div className="flex justify-center items-center min-h-[300px]">
                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
                  <span className="ml-4 text-green-600 font-semibold">Loading...</span>
              </div>
-            ) : wishlistData.length === 0 ? <div className="mt-10 text-center text-2xl font-medium">Your wishlists is empty!</div> :
+            ) :wishlistData.length === 0 ? (
+                <div className="flex flex-col justify-center items-center mt-10 space-y-4 p-4">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
+                    alt="Empty Wishlist"
+                    className="w-36 h-36 opacity-70"
+                  />
+                  <h2 className="text-2xl font-semibold text-gray-600">Your wishlist is empty</h2>
+                  <p className="text-gray-500 text-center max-w-md">
+                    Looks like you haven’t added anything to your wishlist yet.
+                    Start exploring and save your favorite items!
+                  </p>
+                  <button
+                    onClick={() => window.location.href = '/'} // You can change this route
+                    className="mt-4 px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition duration-300"
+                  >
+                    Continue Shopping
+                  </button>
+                </div>
+              ) :
 
                 <div className="flex flex-col gap-3 mt-2 p-2">
                     {

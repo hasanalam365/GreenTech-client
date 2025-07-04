@@ -18,11 +18,11 @@ const Profile = () => {
   });
 
     return (
-        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50   ">
+        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50   h-full md:pt-6 lg:pt-6">
             <Helmet>
         <title>Profile | Dashboard | Green Tech</title>
       </Helmet>
-           <div className="bg-white dark:bg-gray-800 shadow-xl p-4 md:p-6 mt-16 md:mt-10 lg:mt-10 w-[95%] max-w-4xl mx-auto rounded-lg transition-colors duration-300">
+           <div className="bg-white dark:bg-gray-800 shadow-xl p-4  md:p-6  w-[95%] max-w-4xl mx-auto rounded-lg transition-colors duration-300">
       
 
       <div className="flex items-center justify-between mb-6">

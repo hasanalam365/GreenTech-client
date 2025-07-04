@@ -12,28 +12,29 @@ import useAdmin from "../../hooks/useAdmin";
 import { SiPowerpages } from "react-icons/si";
 import { IoIosAddCircle, IoIosCloudDone } from "react-icons/io";
 import { Helmet } from "react-helmet-async";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
-const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
-    const [userData, refetch] = useUser();
+const DashboardNav = ({ setIsOpenNav, isOpenNav, userData, isAdmin }) => {
     const { user, signOutUser } = useAuth();
-
-   
-    const [isAdmin, isLoading] = useAdmin();
 
     const handleLogOut = () => {
         signOutUser();
     };
 
-    // লোডিং থাকলে spinner বা null দিয়ে রেন্ডার করো যাতে flicker না হয়
-    if (isLoading) {
+    // userData check
+    if (!userData || !userData.email) {
         return (
             <div className="flex justify-center items-center h-20 w-60 dark:bg-gray-50 dark:text-gray-800">
-                <span>Loading...</span>
+                <span>Loading user...</span>
             </div>
         );
     }
 
     return (
+      
+
+
+  
         <div className="flex flex-row-reverse justify-between ">
             <Helmet>
                 <title>Dashboard | Green Tech </title>
@@ -197,6 +198,17 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                             >
                                                 <IoIosAddCircle className="text-xl" />
                                                 <span>Add Product</span>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                onClick={() => setIsOpenNav(false)}
+                                                to="/dashboard/all-products"
+                                                className="flex items-center p-2 space-x-3 rounded-md"
+                                            >
+                                           
+                                                <MdProductionQuantityLimits className="text-xl" />
+                                                <span>All Products</span>
                                             </Link>
                                         </li>
                                         <li>
@@ -433,6 +445,17 @@ const DashboardNav = ({ setIsOpenNav, isOpenNav }) => {
                                         <span>Add Product</span>
                                     </NavLink>
                                 </li>
+                                <li>
+                                            <Link
+                                                onClick={() => setIsOpenNav(false)}
+                                                to="/dashboard/all-products"
+                                                className="flex items-center p-2 space-x-3 rounded-md"
+                                            >
+                                           
+                                                <MdProductionQuantityLimits className="text-xl" />
+                                                <span>All Products</span>
+                                            </Link>
+                                        </li>
                                 <li>
                                     <NavLink
                                         to="/dashboard/update-product"

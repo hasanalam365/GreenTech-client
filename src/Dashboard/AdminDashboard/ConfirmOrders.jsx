@@ -50,7 +50,7 @@ const ConfirmOrders = () => {
     }
 
     return (
-        <div className="flex flex-col mt-4 px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50  ">
+        <div className="flex flex-col  px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50  h-full">
             <Helmet>
                 <title>Confirm Orders | Admin | Green Tech </title>
             </Helmet>
