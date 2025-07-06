@@ -1,232 +1,172 @@
-import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { MdDeleteForever, MdEditSquare } from "react-icons/md";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 const AllProducts = () => {
+    const axiosSecure = useAxiosSecure();
+    const [search, setSearch] = useState('');
+    const [page, setPage] = useState(1);
+    const limit = 10;
 
-    const axiosSecure = useAxiosSecure()
+    const { data, refetch, isLoading } = useQuery({
+        queryKey: ['products-updated', search, page],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/products-updated?search=${search}&page=${page}&limit=${limit}`);
+            return res.data;
+        },
+        enabled: !!search || search === '',
+    });
 
-    // const handleStockUpdate = async (e) => {
-    //     e.preventDefault()
-    //     const form = e.target;
-    //     const productId = form.productId.value;
-    //     const stockAmounts = form.stockAmounts.value
+    const products = data?.result || [];
+    const total = data?.totalCount || 0;
+    const totalPages = Math.ceil(total / limit);
 
-    //     const updateProduct = { stockAmounts }
+    const inputText = (e) => {
+        setSearch(e.target.value);
+        setPage(1); // Reset to first page on search
+        refetch();
+    };
 
-    //     const res = await axiosSecure.put(`/stockAdded/${productId}`, updateProduct)
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setPage(newPage);
+        }
+    };
 
-    //     if (res.data.modifiedCount === 1) {
-    //         toast('Stock Updated')
-    //         form.productId.value = '';
-    //         form.stockAmounts.value = ''
-    //     }
-
-    // }
-
-    // const handleDeleteProduct = async (e) => {
-    //     e.preventDefault()
-    //     const form = e.target;
-    //     const productId = form.productId.value;
-    //     const res = await axiosSecure.delete(`/delete-product/${productId}`)
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You want delete this product!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             if (res.data.deletedCount === 1) {
-    //                 toast('Deleted Product')
-    //                 form.productId.value = '';
-    //             }
-    //         }
-    //     });
-
-
-
-    // }
+    const handleProductDelete = (productId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to delete this product!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/delete-product/${productId}`);
+                if (res.data.deletedCount === 1) {
+                    toast.success('Product deleted successfully!');
+                    refetch();
+                } else {
+                    toast.error('Failed to delete product.');
+                }
+            }
+        });
+    };
 
     return (
-       <div className="flex flex-col px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50  h-full">
-                 <Helmet>
-                     <title>Updated Product | Admin | Green Tech </title>
-                 </Helmet>
-                 <div className="flex items-center justify-between mb-2">
-     
-                     <h4 className="text-lg font-semibold">Total Orders:0 <span></span></h4>
-                     <div className="join mr-5">
-                         {/* <div>
-     
-                             <input onChange={inputText} className="input input-bordered join-item " placeholder="Search by order id" />
-     
-                         </div> */}
-     
-                     </div>
-                 </div>
-                 <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
+        <div className="flex flex-col px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50 h-full">
+            <Helmet>
+                <title>All Products | Admin | Green Tech</title>
+            </Helmet>
+
+            <div className="flex items-center justify-between mb-2">
+                <h4 className="text-lg font-semibold">
+                    Total Products: <span>{total}</span>
+                </h4>
+                <input
+                    onChange={inputText}
+                    value={search}
+                    className="input input-bordered join-item"
+                    placeholder="Search by product ID"
+                />
             </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br />
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-        </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Brice Swyre</div>
-              <div className="text-sm opacity-50">China</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Carroll Group
-          <br />
-          <span className="badge badge-ghost badge-sm">Tax Accountant</span>
-        </td>
-        <td>Red</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Marjy Ferencz</div>
-              <div className="text-sm opacity-50">Russia</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Rowe-Schoen
-          <br />
-          <span className="badge badge-ghost badge-sm">Office Assistant I</span>
-        </td>
-        <td>Crimson</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-      {/* row 4 */}
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src="https://img.daisyui.com/images/profile/demo/5@94.webp"
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Yancy Tear</div>
-              <div className="text-sm opacity-50">Brazil</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Wyman-Ledner
-          <br />
-          <span className="badge badge-ghost badge-sm">Community Outreach Specialist</span>
-        </td>
-        <td>Indigo</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
-    </tbody>
-    {/* foot */}
-    <tfoot>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
-             </div>
+
+            {isLoading ? (
+                <div className="flex justify-center items-center min-h-[300px]">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+                    <span className="ml-4 text-green-600 font-semibold">Loading...</span>
+                </div>
+            ) : products.length === 0 ? (
+                <span className="flex items-center justify-center mt-5">No product found!</span>
+            ) : (
+                <>
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Details</th>
+                                    <th>Product Id</th>
+                                    <th>Price</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map((product, index) => (
+                                    <tr key={product._id}>
+                                        <td>{(page - 1) * limit + index + 1}</td>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
+                                                        <img src={product.imgUrl} alt="product" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">{product.title}</div>
+                                                    <div className="text-sm opacity-50">${product.price}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{product.productId}</td>
+                                        <td>${product.price}</td>
+                                        <td>
+                                            <button className="btn btn-xs">
+                                                <MdEditSquare className="text-green-600 text-xl hover:scale-110" />
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => handleProductDelete(product.productId)}
+                                                className="btn btn-ghost btn-xs"
+                                            >
+                                                <MdDeleteForever className="text-red-600 text-xl hover:scale-110" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Pagination */}
+                    <div className="flex justify-center mt-4 gap-2 flex-wrap">
+                        <button
+                            onClick={() => handlePageChange(page - 1)}
+                            className="btn btn-sm"
+                            disabled={page === 1}
+                        >
+                            Prev
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <button
+                                key={i + 1}
+                                className={`btn btn-sm ${page === i + 1 ? 'btn-active bg-green-600 text-white' : ''}`}
+                                onClick={() => handlePageChange(i + 1)}
+                            >
+                                {i + 1}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={() => handlePageChange(page + 1)}
+                            className="btn btn-sm"
+                            disabled={page === totalPages}
+                        >
+                            Next
+                        </button>
+                    </div>
+                </>
+            )}
+        </div>
     );
 };
 
