@@ -3,103 +3,106 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOST_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-
 const AddProduct = () => {
+  const [imgPrev, setImgPrev] = useState("");
+  const [feature, setFeature] = useState([]);
+  const [currentFeatures, setCurrentFeatures] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
-    const [imgPrev, setImgPrev] = useState('')
-    const axiosSecure = useAxiosSecure()
-    const axiosPublic = useAxiosPublic()
-    const [feature, setFeature] = useState([])
-    const [currentFeatures, setCurrentFeatures] = useState('')
-    const [selectedCategory, setSelectedCategory] = useState('')
+  const handleAddProduct = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const category = selectedCategory;
+    const rating = form.rating.value;
+    const stock = form.stock.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const photo = form.photo.files[0];
 
+    try {
+      const formData = new FormData();
+      formData.append("image", photo);
+        const res = await axios.post(image_hosting_api, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: false 
+          });
+          
+      const imgUrl = res.data.data.display_url;
 
-    const handleAddProduct = async (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const title = form.title.value;
-        const category = selectedCategory
-        const rating = form.rating.value;
-        const features = feature;
-        const stock = form.stock.value;
-        const price = form.price.value;
-        const description = form.description.value;
-        const photo = form.photo.files[0];
+      const productData = {
+        title,
+        category,
+        rating,
+        features: feature,
+        stock,
+        price,
+        description,
+        imgUrl,
+      };
 
-        try {
-            const formData = new FormData();
-            formData.append('image', photo);
-            const res = await axiosPublic.post(image_hosting_api, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-            const imgUrl = res.data.data.display_url;
-            const productData = { title, category, rating, features, stock, price, description, imgUrl }
-
-            const addProduct = await axiosSecure.post('/add-product', productData)
-            if (addProduct.data.modifiedCount === 1) {
-                toast('product added successfully')
-                form.reset();
-                setImgPrev('');
-                setFeature([]);
-                setSelectedCategory('')
-            }
-
-        } catch (error) {
-            console.log(error.message)
-        }
-
-
-
+      const addProduct = await axiosSecure.post("/add-product", productData);
+      if (addProduct.data.insertedId || addProduct.data.modifiedCount === 1) {
+        toast.success("Product added successfully");
+        form.reset();
+        setImgPrev("");
+        setFeature([]);
+        setSelectedCategory("");
+      }
+    } catch (error) {
+      console.log(error.message);
     }
+  };
 
-    const handleAddFeature = () => {
-        if (currentFeatures && !feature.includes(currentFeatures)) {
-            setFeature([...feature, currentFeatures])
-            setCurrentFeatures('')
-        }
-        toast('added feature')
+  const handleAddFeature = () => {
+    if (currentFeatures && !feature.includes(currentFeatures)) {
+      setFeature([...feature, currentFeatures]);
+      setCurrentFeatures("");
     }
+  };
 
-    const handleImg = (e) => {
+  const handleRemoveFeature = (item) => {
+    setFeature(feature.filter((f) => f !== item));
+  };
 
-        const photo = e.target.files[0];
-        setImgPrev(photo.name)
+  const handleImg = (e) => {
+    const photo = e.target.files[0];
+    setImgPrev(photo.name);
+  };
 
-    }
+  return (
+    <div className="bg-gradient-to-br from-green-50 via-green-100 to-green-50 py-10 px-6 md:px-10 lg:px-16 min-h-screen">
+      <Helmet>
+        <title>Add Product | Admin | Green Tech</title>
+      </Helmet>
 
-    const handleChangeCategory = (e) => {
-        setSelectedCategory(e.target.value)
-    }
+      <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-6 md:p-10">
+        <h2 className="text-3xl font-bold mb-6 text-center text-green-600">Add New Product</h2>
 
-    return (
-        <div className="bg-gradient-to-r from-green-50 via-green-100 to-green-50  ">
-            <Helmet>
-                <title>Add Product | Admin | Green Tech </title>
-            </Helmet>
-            <form onSubmit={handleAddProduct}>
-                <div className="text-center mb-5">
-                    <h4 className="text-3xl font-semibold">Add Product</h4>
-                </div>
+        <form onSubmit={handleAddProduct} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Title */}
+          <div>
+            <label className="block mb-1 font-medium">Product Title</label>
+            <input type="text" name="title" required className="input input-bordered w-full" />
+          </div>
 
-                <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 bg-gray-200 p-4">
-
-                    <div className="col-span-3 sm:col-span-3">
-                        <label htmlFor="title" className="font-medium">Title</label>
-                        <input id="title" name="title" type="text"
-                            placeholder="title" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                    </div>
-                    <div className="col-span-3 sm:col-span-3 flex flex-col">
-                        <label htmlFor="category" className="font-medium">Category</label>
-                        <select
-                            className="select focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full "
-                            value={selectedCategory}
-                            onChange={handleChangeCategory}
-                        >
-                            <option disabled value="">Pick your category</option>
+          {/* Category */}
+          <div>
+            <label className="block mb-1 font-medium">Category</label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="select select-bordered w-full"
+              required
+            >
+             <option disabled value="">Pick your category</option>
                             <option value="Popular">Popular</option>
                             <option value="New Arrival">New Arrival</option>
                             <option value="Best Sellers">Best Sellers</option>
@@ -112,86 +115,104 @@ const AddProduct = () => {
                             <option value="Wearable Tech">Wearable Tech</option>
                             <option value="Home Automation">Home Automation</option>
                             <option value="Portable Devices">Portable Devices</option>
-                        </select>
+            </select>
+          </div>
 
-                    </div>
-                    <div className="col-span-3 sm:col-span-3">
-                        <label htmlFor="rating" className="font-medium">Rating</label>
-                        <input id="rating" name="rating" type="number"
-                            placeholder="rating" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                    </div>
-                    <div className="col-span-3 sm:col-span-3 ">
-                        <label htmlFor="features" className="font-medium">Features</label>
-                        <div className="flex">
-                            <input id="features" name="features" type="text"
-                                value={currentFeatures}
-                                onChange={(e) => setCurrentFeatures(e.target.value)}
-                                placeholder="Add some Features" className="w-3/4 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                            <button type="button" onClick={handleAddFeature} className="ml-2 p-2 bg-blue-500 text-white rounded-md w-1/4">Add</button>
-                        </div>
+          {/* Rating */}
+          <div>
+            <label className="block mb-1 font-medium">Rating</label>
+            <input type="number" name="rating" step="0.1" required className="input input-bordered w-full" />
+          </div>
 
-                    </div>
+          {/* Stock */}
+          <div>
+            <label className="block mb-1 font-medium">Stock Quantity</label>
+            <input type="number" name="stock" required className="input input-bordered w-full" />
+          </div>
 
+          {/* Price */}
+          <div>
+            <label className="block mb-1 font-medium">Price ($)</label>
+            <input type="number" name="price" required className="input input-bordered w-full" />
+          </div>
 
+          {/* Image Upload */}
+          <div>
+            <label className="block mb-1 font-medium">Product Image</label>
+            <input
+              type="file"
+              name="photo"
+              accept="image/*"
+              onChange={handleImg}
+              required
+              className="file-input file-input-bordered w-full"
+            />
+            {imgPrev && <p className="text-sm mt-1 text-gray-600">Selected: {imgPrev}</p>}
+          </div>
 
-                    <div className="col-span-3 sm:col-span-3">
-                        <label htmlFor="stock" className="font-medium">Stock</label>
-                        <input id="stock" name="stock" type="number"
-                            placeholder="stock" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                    </div>
-                    <div className="col-span-3 sm:col-span-3">
-                        <label htmlFor="price" className="font-medium">Price</label>
-                        <input id="price" name="price" type="number"
-                            placeholder="price" className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent " />
-                    </div>
+          {/* Description */}
+          <div className="md:col-span-2">
+            <label className="block mb-1 font-medium">Description</label>
+            <textarea
+              name="description"
+              rows="3"
+              required
+              className="textarea textarea-bordered w-full"
+            ></textarea>
+          </div>
 
-                    <div className=' col-span-3 sm:col-span-3 text-center'>
-                        <label>
-                            <input onChange={handleImg} className='text-sm cursor-pointer w-36 hidden'
-                                type='file'
-                                name='photo'
-                                id='image'
-                                accept='image/*'
+          {/* Features */}
+          <div className="md:col-span-2">
+            <label className="block mb-1 font-medium">Features</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={currentFeatures}
+                onChange={(e) => setCurrentFeatures(e.target.value)}
+                className="input input-bordered w-full"
+                placeholder="e.g. Battery: 5000mAh"
+              />
+              <button
+                type="button"
+                onClick={handleAddFeature}
+                className="btn bg-green-500 text-white hover:bg-green-600"
+              >
+                Add
+              </button>
+            </div>
 
-                                required
-                            />
+            {/* Show Added Features */}
+            {feature.length > 0 && (
+              <ul className="mt-3 space-y-2">
+                {feature.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="bg-green-100 text-green-700 p-2 rounded-md flex justify-between items-center"
+                  >
+                    {item}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveFeature(item)}
+                      className="text-red-600 font-bold hover:text-red-800"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-
-                            <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
-                                Upload Image
-                            </div>
-                        </label>
-                    </div>
-                    {imgPrev ? <div className="col-span-3 sm:col-span-3 flex items-center ">
-                        {imgPrev}
-                    </div> :
-                        <div className="col-span-3 sm:col-span-3 flex items-center text-red-600">
-                            No file Select
-                        </div>
-                    }
-                    <div className="col-span-6 sm:col-span-6">
-                        <label htmlFor="description" className="font-medium">Description</label>
-
-                        <textarea
-                            name="description"
-                            className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            rows="4"
-                            placeholder="Enter your description here..."
-                        ></textarea>
-                    </div>
-                </div>
-                {feature.length > 0 && <div className="col-span-3 sm:col-span-3 my-4">
-                    <h5 className="font-medium">Current Add Features:</h5>
-                    {feature.map(feat => <li className="list-disc" key={feat}>{feat}</li>)}
-
-                </div>}
-                <div className="mb-5">
-                    <button type="submit" className="btn btn-secondary w-full">Add Product</button>
-                </div>
-            </form>
-
-        </div>
-    );
+          {/* Submit Button */}
+          <div className="md:col-span-2 mt-6">
+            <button type="submit" className="btn w-full bg-green-600 text-white hover:bg-green-700">
+              Add Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default AddProduct;

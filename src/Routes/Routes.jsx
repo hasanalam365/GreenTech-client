@@ -37,6 +37,7 @@ import RefoundPolicy from "../Components/RefoundPolicy"
 import ShippingPolicy from "../Components/ShippingPolicy"
 import TermOfUse from "../Components/TermOfUse"
 import AllProducts from "../Dashboard/Dashboard/AllProducts";
+import UpdatedProduct from "../Dashboard/AdminDashboard/UpdatedProduct";
 // import PersonaLinfo from "../Dashboard/UserDashboard/Profile";
 
 
@@ -218,7 +219,19 @@ const router = createBrowserRouter([
                     <AllProducts></AllProducts>
                 </AdminRoute>
             },
-
+            {
+                path: "/dashboard/product/edit/:id", // ✅ no leading slash
+                element: (
+                  <AdminRoute>
+                    <UpdatedProduct />
+                  </AdminRoute>
+                ),
+                loader: ({ params }) => {
+                  const apiUrl = import.meta.env.VITE_API_URL;
+                  return fetch(`${apiUrl}/product/edit/${params.id}`);
+                }
+              }
+              
         ]
     }
 

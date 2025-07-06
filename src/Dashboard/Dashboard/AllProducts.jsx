@@ -5,6 +5,7 @@ import { useState } from "react";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllProducts = () => {
     const axiosSecure = useAxiosSecure();
@@ -57,7 +58,13 @@ const AllProducts = () => {
                 }
             }
         });
-    };
+  };
+  
+
+
+  const handleEditProduct = (_id) => {
+    console.log(_id)
+  }
 
     return (
         <div className="flex flex-col px-4 md:p-8 bg-gradient-to-r from-green-50 via-green-100 to-green-50 h-full">
@@ -118,10 +125,11 @@ const AllProducts = () => {
                                         <td>{product.productId}</td>
                                         <td>${product.price}</td>
                                         <td>
-                                            <button className="btn btn-xs">
-                                                <MdEditSquare className="text-green-600 text-xl hover:scale-110" />
-                                            </button>
-                                        </td>
+  <Link to={`/dashboard/product/edit/${product._id}`} className="btn btn-xs">
+    <MdEditSquare className="text-green-600 text-xl hover:scale-110" />
+  </Link>
+</td>
+
                                         <td>
                                             <button
                                                 onClick={() => handleProductDelete(product.productId)}
