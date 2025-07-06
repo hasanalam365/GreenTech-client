@@ -1,19 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { useState, useRef, useEffect } from "react";
 import useCartList from "../../hooks/useCartList";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { IoSearch } from "react-icons/io5";
 
 const Navbar = ({ setOpenCart, openCart, setSearch }) => {
   const [isOpenProfile, setIsOpenProfile] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [data] = useCartList();
   const axiosPublic = useAxiosPublic();
   const { signOutUser, user } = useAuth();
-  const [navOpen, setNavOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const { data: userData = {} } = useQuery({
     queryKey: ["user"],
@@ -27,6 +28,17 @@ const Navbar = ({ setOpenCart, openCart, setSearch }) => {
   const handleLogout = () => {
     signOutUser();
   };
+
+  // Close mobile nav if clicked outside
+  useEffect(() => {
+    const handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setNavOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const navLinks = (
     <>
@@ -57,30 +69,55 @@ const Navbar = ({ setOpenCart, openCart, setSearch }) => {
     <nav className="navbar fixed top-0 left-0 w-full z-50 px-4 bg-white shadow-md backdrop-blur-md">
       <div className="navbar-start">
         {/* Mobile Hamburger */}
-        <div className="lg:hidden">
+        <div className="lg:hidden" ref={menuRef}>
           <button
             onClick={() => setNavOpen(!navOpen)}
             className="text-2xl text-gray-700"
           >
             ☰
           </button>
+
           {navOpen && (
-            <ul className="absolute top-14 left-2 w-64 p-4 bg-white shadow-lg rounded-xl z-50 space-y-2 text-gray-800 text-base font-medium">
+            <ul className="absolute top-full left-0 w-full p-4 bg-white shadow-lg rounded-b-xl z-50 space-y-2 text-gray-800 text-base font-medium">
               {navLinks}
               <hr />
-              <NavLink to="/dashboard">Dashboard</NavLink>
+              <NavLink
+                to="/dashboard"
+                onClick={() => setNavOpen(false)}
+                className="block"
+              >
+                Dashboard
+              </NavLink>
               {user?.email ? (
-                <li><button onClick={handleLogout}>Logout</button></li>
+                <li>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setNavOpen(false);
+                    }}
+                    className="block w-full text-left"
+                  >
+                    Logout
+                  </button>
+                </li>
               ) : (
-                <li><Link to="/login">Login</Link></li>
+                <li>
+                  <Link to="/login" onClick={() => setNavOpen(false)}>
+                    Login
+                  </Link>
+                </li>
               )}
             </ul>
           )}
         </div>
 
         {/* Logo */}
-        <Link to='/' className="ml-2">
-          <img src="https://i.ibb.co/4Zdz1LPN/navLogo.png" className="w-[120px] h-[50px]" alt="Green Tech" />
+        <Link to="/" className="ml-2">
+          <img
+            src="https://i.ibb.co/4Zdz1LPN/navLogo.png"
+            className="w-[120px] h-[50px]"
+            alt="Green Tech"
+          />
         </Link>
       </div>
 
@@ -102,7 +139,7 @@ const Navbar = ({ setOpenCart, openCart, setSearch }) => {
         </div>
       </div>
 
-      {/* Right */}
+      {/* Right side */}
       <div className="navbar-end gap-4 text-gray-700">
         {/* Cart */}
         <button onClick={() => setOpenCart(!openCart)} className="relative">
